@@ -360,13 +360,35 @@ if(contactForm){
 
         e.preventDefault();
 
+        /* ========================= */
+        /* MESSAGE POUR MOI */
+        /* ========================= */
+
         emailjs.sendForm(
 
             "service_4c683nn",
-            "template_g1sxtde",
+            "template_0wi3o61",
             "#contact-form",
             "6Fb9DMpeKBVoSYEw-"
+
         )
+
+        .then(() => {
+
+            /* ========================= */
+            /* AUTO REPONSE VISITEUR */
+            /* ========================= */
+
+            return emailjs.sendForm(
+
+                "service_4c683nn",
+                "template_g1sxtde",
+                "#contact-form",
+                "6Fb9DMpeKBVoSYEw-"
+
+            );
+
+        })
 
         .then(() => {
 
@@ -380,12 +402,11 @@ if(contactForm){
 
         .catch((error) => {
 
+            console.log("ERROR:", error);
+
             alert(
                 "Erreur lors de l’envoi du message."
             );
-
-            console.log("ERROR:", error);
-            alert(error.text);
 
         });
 
