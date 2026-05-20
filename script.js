@@ -794,3 +794,149 @@ filterButtons.forEach((button) => {
     });
 
 });
+
+/* ========================= */
+/* SKILLS ANIMATION */
+/* ========================= */
+
+const premiumCards =
+document.querySelectorAll(".premium-skill-card");
+
+premiumCards.forEach((card, index) => {
+
+    gsap.from(card, {
+
+        scrollTrigger: {
+
+            trigger: card,
+            start: "top 88%"
+
+        },
+
+        opacity: 0,
+        y: 80,
+        scale: 0.9,
+
+        duration: 0.9,
+
+        delay: index * 0.05,
+
+        ease: "power3.out"
+
+    });
+
+});
+
+
+/* ========================= */
+/* PROGRESS BAR ANIMATION */
+/* ========================= */
+
+const progressBars =
+document.querySelectorAll(".skill-progress-bar");
+
+progressBars.forEach((bar) => {
+
+    const finalWidth =
+    bar.style.width || window.getComputedStyle(bar).width;
+
+    gsap.fromTo(bar,
+
+        {
+            width: "0%"
+        },
+
+        {
+            width: finalWidth,
+
+            duration: 1.8,
+
+            ease: "power3.out",
+
+            scrollTrigger: {
+
+                trigger: bar,
+                start: "top 90%"
+
+            }
+
+        }
+
+    );
+
+});
+
+
+
+/* ========================= */
+/* FILTER ANIMATION */
+/* ========================= */
+
+const premiumFilterButtons =
+document.querySelectorAll(".filter-btn");
+
+const premiumSkillCards =
+document.querySelectorAll(".premium-skill-card");
+
+premiumFilterButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+        /* ACTIVE BUTTON */
+
+        premiumFilterButtons.forEach((btn) => {
+
+            btn.classList.remove("active");
+
+        });
+
+        button.classList.add("active");
+
+        /* FILTER */
+
+        const filter =
+        button.getAttribute("data-filter");
+
+        premiumSkillCards.forEach((card) => {
+
+            const category =
+            card.getAttribute("data-category");
+
+            if(
+                filter === "all" ||
+                category === filter
+            ){
+
+                card.style.display = "block";
+
+                gsap.fromTo(card,
+
+                    {
+                        opacity: 0,
+                        y: 40,
+                        scale: 0.9
+                    },
+
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+
+                        duration: 0.5,
+
+                        ease: "power3.out"
+                    }
+
+                );
+
+            }else{
+
+                card.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+});
