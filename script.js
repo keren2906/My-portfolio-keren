@@ -105,63 +105,6 @@ window.addEventListener("scroll", () => {
 
 });
 
-
-/* ========================= */
-/* TYPING EFFECT HERO */
-/* ========================= */
-
-const typingText = document.querySelector(".hero-subtitle");
-
-const words = [
-    "Full Stack Developer",
-    "UI/UX Enthusiast",
-    "Frontend Developer",
-    "Creative Web Designer"
-];
-
-let wordIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-function typeEffect(){
-
-    if(!typingText) return;
-
-    const currentWord = words[wordIndex];
-
-    if(isDeleting){
-
-        typingText.textContent =
-        currentWord.substring(0, charIndex--);
-
-    }else{
-
-        typingText.textContent =
-        currentWord.substring(0, charIndex++);
-
-    }
-
-    let speed = isDeleting ? 60 : 120;
-
-    if(!isDeleting && charIndex === currentWord.length){
-
-        speed = 1800;
-        isDeleting = true;
-
-    }else if(isDeleting && charIndex === 0){
-
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-
-    }
-
-    setTimeout(typeEffect, speed);
-
-}
-
-typeEffect();
-
-
 /* ========================= */
 /* ACTIVE LINK ON SCROLL */
 /* ========================= */
@@ -198,32 +141,6 @@ window.addEventListener("scroll", () => {
     });
 
 });
-
-
-/* ========================= */
-/* PARALLAX HERO IMAGE */
-/* ========================= */
-
-const heroImage =
-document.querySelector(".hero-image-wrapper");
-
-if(heroImage){
-
-    window.addEventListener("mousemove", (e) => {
-
-        const x =
-        (window.innerWidth / 2 - e.pageX) / 40;
-
-        const y =
-        (window.innerHeight / 2 - e.pageY) / 40;
-
-        heroImage.style.transform =
-        `translate(${x}px, ${y}px)`;
-
-    });
-
-}
-
 
 /* ========================= */
 /* PROJECT HOVER EFFECT */
@@ -324,9 +241,9 @@ scrollBtn.addEventListener("click", () => {
 
     if(scrollBtn.classList.contains("up")){
 
-        window.scrollTo({
+        document.getElementById("home")
+        .scrollIntoView({
 
-            top: 0,
             behavior: "smooth"
 
         });
@@ -492,15 +409,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 /* HERO ANIMATIONS */
 
-gsap.from(".hero-subtitle", {
-
-    y: 40,
-    opacity: 0,
-    duration: 1,
-    delay: 2.2
-
-});
-
 gsap.from(".hero-content h1", {
 
     y: 60,
@@ -605,27 +513,6 @@ gsap.from(".skills-left", {
 
 });
 
-
-gsap.from(".skill-item", {
-
-    scrollTrigger: {
-
-        trigger: ".skills-right",
-        start: "top 80%"
-
-    },
-
-    y: 80,
-    opacity: 0,
-
-    duration: 1,
-
-    stagger: 0.12,
-
-    ease: "power3.out"
-
-});
-
 /* ========================= */
 /* SKILLS FILTER */
 /* ========================= */
@@ -634,7 +521,7 @@ const filterButtons =
 document.querySelectorAll(".filter-btn");
 
 const skillCards =
-document.querySelectorAll(".skill-card");
+document.querySelectorAll(".premium-skill-card");
 
 filterButtons.forEach((button) => {
 
@@ -940,3 +827,68 @@ premiumFilterButtons.forEach((button) => {
     });
 
 });
+
+/* ========================= */
+/* PREMIUM TYPEWRITER */
+/* ========================= */
+
+const typingText =
+document.querySelector(".typing-text");
+
+const words = [
+
+    "Développeuse Frontend",
+    "Développeuse Backend",
+    "UI/UX Designer",
+    "Développeuse Web Mobile",
+    "Full Stack Junior"
+
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function typeEffect(){
+
+    const currentWord =
+    words[wordIndex];
+
+    if(isDeleting){
+
+        typingText.textContent =
+        currentWord.substring(0, charIndex--);
+
+    }else{
+
+        typingText.textContent =
+        currentWord.substring(0, charIndex++);
+
+    }
+
+    let speed = isDeleting ? 45 : 90;
+
+    if(!isDeleting && charIndex === currentWord.length + 1){
+
+        speed = 1600;
+
+        isDeleting = true;
+
+    }
+
+    else if(isDeleting && charIndex === 0){
+
+        isDeleting = false;
+
+        wordIndex =
+        (wordIndex + 1) % words.length;
+
+        speed = 400;
+
+    }
+
+    setTimeout(typeEffect, speed);
+
+}
+
+typeEffect();
