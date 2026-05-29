@@ -3085,18 +3085,7 @@ body{
         gap: 2rem;
     }
 
-    .hero-image{
-        max-width: 320px;
-        margin: 0 auto;
-        margin-bottom: -10px;
-    }
-
-    .hero-image img{
-        height: 340px;
-        object-fit: cover;
-        object-position: center top;
-    }
-
+    
     .hero-title{
         font-size: 3.5rem;
         line-height: 1.1;
@@ -3148,14 +3137,52 @@ body{
 
     }   
 
-    .hero-image-wrapper{
+    /* HERO MOBILE IMAGE */
 
-    width: 380px;
+    .hero-image{
 
-    height: 460px;
+        max-width: 100%;
+
+        margin: 0 auto;
+
+        display: flex;
+        justify-content: center;
 
     }
 
+    .hero-image-wrapper{
+
+        width: 290px;
+
+        height: auto;
+
+        min-height: unset;
+
+        padding: 20px 15px 0;
+
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+
+        overflow: hidden;
+
+    }
+
+    .hero-image-wrapper img{
+
+        width: 100%;
+
+        height: auto;
+
+        max-height: 360px;
+
+        object-fit: contain;
+
+        display: block;
+
+    }
+
+   
     /* ABOUT */
 
     .about-cards{
