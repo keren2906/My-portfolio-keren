@@ -165,8 +165,6 @@ ul{
 
 /* LIGHT MODE SECOND BUTTON */
 
-/* LIGHT MODE SECOND BUTTON */
-
 body.light-mode .btn-secondary{
 
     background: #EEEEEE;
@@ -222,13 +220,15 @@ body.light-mode .btn-secondary:hover{
     animation:
     introFadeOut 1.2s ease forwards;
 
-    animation-delay: 3.8s;
+    animation-delay: 3.2s;
 
 }
 
 .intro-content{
 
     text-align: center;
+    position: relative;
+    z-index: 2;
 
 }
 
@@ -276,6 +276,192 @@ body.light-mode .btn-secondary:hover{
 
 }
 
+.intro-logo{
+
+    width: 95px;
+
+    margin-bottom: 28px;
+
+    position: relative;
+
+    z-index: 3;
+
+    opacity: 0;
+
+    animation:
+    logoEntrance 1.4s cubic-bezier(.22,1,.36,1) forwards,
+    logoFloat 4s ease-in-out infinite 1.4s;
+
+    filter:
+    drop-shadow(0 0 12px rgba(37,99,235,0.18))
+    drop-shadow(0 0 40px rgba(37,99,235,0.22));
+
+}
+
+/* GLOW DERRIERE LE LOGO */
+
+.intro-logo::after{
+
+    content: "";
+
+    position: absolute;
+
+    inset: -20px;
+
+    border-radius: 50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(37,99,235,0.35),
+        transparent 70%
+    );
+
+    z-index: -1;
+
+    animation: pulseGlow 3s ease-in-out infinite;
+
+}
+
+@keyframes logoEntrance{
+
+    0%{
+
+        opacity: 0;
+
+        transform:
+        scale(.6)
+        rotate(-12deg)
+        translateY(-40px);
+
+        filter:
+            blur(10px)
+            drop-shadow(0 0 12px rgba(37,99,235,0.18))
+            drop-shadow(0 0 40px rgba(37,99,235,0.22));
+
+    }
+
+    60%{
+
+        opacity: 1;
+
+        transform:
+        scale(1.08)
+        rotate(2deg)
+        translateY(0);
+
+        filter:
+            blur(0)
+            drop-shadow(0 0 12px rgba(37,99,235,0.18))
+            drop-shadow(0 0 40px rgba(37,99,235,0.22));
+
+    }
+
+    100%{
+
+        opacity: 1;
+
+        transform:
+        scale(1)
+        rotate(0)
+        translateY(0);
+
+    }
+
+}
+
+/* FLOAT */
+
+@keyframes logoFloat{
+
+    0%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-4px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
+
+}
+
+/* GLOW PULSE */
+
+@keyframes pulseGlow{
+
+    0%{
+
+        opacity: .5;
+        transform: scale(1);
+
+    }
+
+    50%{
+
+        opacity: 1;
+        transform: scale(1.12);
+
+    }
+
+    100%{
+
+        opacity: .5;
+        transform: scale(1);
+
+    }
+
+}
+
+.intro-screen::before{
+
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(37,99,235,0.14),
+        transparent 70%
+    );
+
+    animation: moveGlow 6s ease-in-out infinite;
+
+    z-index: 0;
+
+}
+
+@keyframes moveGlow{
+
+    0%{
+
+        transform:
+        translate(-120px,-60px);
+
+    }
+
+    50%{
+
+        transform:
+        translate(120px,60px);
+
+    }
+
+    100%{
+
+        transform:
+        translate(-120px,-60px);
+
+    }
+
+}
+
 /* EFFET STYLE ITALIQUE MODERNE */
 
 .intro-title,
@@ -289,7 +475,7 @@ body.light-mode .btn-secondary:hover{
 
     width: 0;
 
-    height: 2px;
+    height: 3px;
 
     background: #2563EB;
 
@@ -297,10 +483,11 @@ body.light-mode .btn-secondary:hover{
 
     border-radius: 999px;
 
-    animation:
-    introLine 1.2s ease forwards;
+    animation:introLine 1.2s ease forwards;
 
     animation-delay: 1s;
+
+    box-shadow:0 0 12px rgba(37,99,235,0.45);
 
 }
 
